@@ -82,7 +82,7 @@ CAN FDlink 配置从节点时需要根据网络承载能力确定配置，推荐
 
 ### 1.3 CAN FD 拓展帧结构
 
-![image-20250110111527159](assets/CAN FD拓展帧结构.png)
+![image-20250110111527159](assets/CAN FD extended frame.png)
 
 **帧起始**：长度1bit，表示数据帧的开始，总线上表现为一个显性位边沿信号，与传统CAN相同。（1 bit）
 

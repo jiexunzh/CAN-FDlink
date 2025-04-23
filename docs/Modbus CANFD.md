@@ -24,7 +24,7 @@ Modbus细分为：Modbus RTU、Modbus ASCII和Modbus TCP，它们的区别在于
 
 Modbus CANFD根据Modbus RTU修改而来，标准Modbus RTU结构如下：
 
-![在这里插入图片描述](assets/Modbus RTU结构.png)
+![在这里插入图片描述](assets/Modbus RTU frame.png)
 
 1、根据特性①、③，Modbus CANFD**取消Modbus RTU的CRC16校验码**；
 
@@ -34,13 +34,13 @@ Modbus CANFD根据Modbus RTU修改而来，标准Modbus RTU结构如下：
 
 Modbus CANFD结构如下：
 
-![Modbus CANFD帧结构](assets/Modbus CANFD结构.png)
+![Modbus CANFD帧结构](assets/Modbus CANFD frame.png)
 
 ## Modbus CANFD 异常响应
 
 Modbus CANFD异常响应帧：
 
-![image-20250111140259758](assets/Modbus CANFD异常响应帧结构.png)
+![image-20250111140259758](assets/Modbus CANFD exceptional response.png)
 
 Modbus CANFD异常码：
 
