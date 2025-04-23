@@ -1,0 +1,29 @@
+#ifndef __MODBUS_REGISTERS_H__
+#define __MODBUS_REGISTERS_H__
+
+#include <stdint.h>
+
+typedef enum
+{
+    USE_ONE_REG = 1, /* 使用1个Modbus寄存器 */
+    USE_TWO_REG,     /* 使用2个Modbus寄存器 */
+} RegNum_TypeDef;
+
+typedef enum
+{
+    ONLY_READ = 0, /* 只读 */
+    READ_WRITE,    /* 读写 */
+} RegAccess_TypeDef;
+
+typedef struct
+{
+    uint16_t start_addr;           /* 数据起始地址 */
+    RegNum_TypeDef reg_num;        /* 数据使用的Modbus寄存器个数 */
+    RegAccess_TypeDef access_type; /* 数据读写属性 */
+    void* p_data;                  /* 数据指针 */
+} ModbusReg_TypeDef;
+
+extern const ModbusReg_TypeDef MODBUS_REGISTERS[];
+extern const uint16_t MODBUS_REG_NUM;
+
+#endif
