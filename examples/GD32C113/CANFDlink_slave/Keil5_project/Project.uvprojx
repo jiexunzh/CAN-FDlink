@@ -532,6 +532,16 @@
               <FileType>1</FileType>
               <FilePath>..\CANFDlink\src\modbus_registers.c</FilePath>
             </File>
+            <File>
+              <FileName>modbus_common.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\CANFDlink\src\modbus_common.c</FilePath>
+            </File>
+            <File>
+              <FileName>modbus_canfd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\CANFDlink\src\modbus_canfd.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
