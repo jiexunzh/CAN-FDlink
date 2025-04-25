@@ -1,7 +1,7 @@
 #include <stdint.h>
 #include <stdio.h>
 
-/* CRC??? */
+/* CRC余式表 */
 static const uint16_t crc_table[256] = {
     0x0000, 0xc0c1, 0xc181, 0x0140, 0xc301, 0x03c0, 0x0280, 0xc241,
     0xc601, 0x06c0, 0x0780, 0xc741, 0x0500, 0xc5c1, 0xc481, 0x0440,
@@ -38,14 +38,11 @@ static const uint16_t crc_table[256] = {
 };
 
 /**
- * @brief  ?????crc
- * @param  
- * @retval 
- */
-/**
- * @brief  ?????CRC-16(Modbus)
- * @param  
- * @retval 
+ * @brief  查表法计算CRC-16(Modbus)
+ * @param  ptr 数据指针
+ * @param  len 数据长度（不包括CRC）
+ * @retval Modbus CRC结算值，高字节在高位，低字节在低位
+ * @note   若数据和数据长度包括了正确的CRC，则计算值为0
  */
 uint16_t crc16_modbus(const uint8_t* ptr, uint16_t len)
 {
