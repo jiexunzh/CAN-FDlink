@@ -76,3 +76,7 @@
 
 # vscode
 *.vscode
+
+# others
+*.exe
+
