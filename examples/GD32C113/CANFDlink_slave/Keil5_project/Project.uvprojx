@@ -338,7 +338,7 @@
               <MiscControls></MiscControls>
               <Define>USE_STDPERIPH_DRIVER,GD32C11X</Define>
               <Undefine></Undefine>
-              <IncludePath>..\Libraries\CMSIS;..\Libraries\CMSIS\GD\GD32C11x\Include;..\Libraries\GD32C11x_standard_peripheral\Include;..\Bsp;..\App;..\CANFDlink\inc;..\Utils</IncludePath>
+              <IncludePath>..\Libraries\CMSIS;..\Libraries\CMSIS\GD\GD32C11x\Include;..\Libraries\GD32C11x_standard_peripheral\Include;..\Bsp;..\App;..\CANFDlink\inc;..\Utils;..\CANFDlink\inc\port</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -522,10 +522,15 @@
               <FileType>1</FileType>
               <FilePath>..\Bsp\bsp_systick.c</FilePath>
             </File>
+            <File>
+              <FileName>bsp_can.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Bsp\bsp_can.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
-          <GroupName>CANFDlink</GroupName>
+          <GroupName>CANFDlink/src</GroupName>
           <Files>
             <File>
               <FileName>modbus_registers.c</FileName>
@@ -538,9 +543,19 @@
               <FilePath>..\CANFDlink\src\modbus_common.c</FilePath>
             </File>
             <File>
-              <FileName>modbus_canfd.c</FileName>
+              <FileName>modbus_canfd_slave.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\CANFDlink\src\modbus_canfd.c</FilePath>
+              <FilePath>..\CANFDlink\src\modbus_canfd_slave.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>CANFDlink/port</GroupName>
+          <Files>
+            <File>
+              <FileName>canfdlink_port.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\CANFDlink\inc\port\canfdlink_port.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -556,6 +571,16 @@
               <FileName>main.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\App\main.c</FilePath>
+            </File>
+            <File>
+              <FileName>slave.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\App\slave.c</FilePath>
+            </File>
+            <File>
+              <FileName>CANFDlinkConfig.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\App\CANFDlinkConfig.h</FilePath>
             </File>
           </Files>
         </Group>
