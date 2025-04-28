@@ -530,6 +530,16 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>CANFDlink/port</GroupName>
+          <Files>
+            <File>
+              <FileName>canfdlink_port.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\CANFDlink\inc\port\canfdlink_port.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>CANFDlink/src</GroupName>
           <Files>
             <File>
@@ -546,16 +556,6 @@
               <FileName>modbus_canfd_slave.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\CANFDlink\src\modbus_canfd_slave.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>CANFDlink/port</GroupName>
-          <Files>
-            <File>
-              <FileName>canfdlink_port.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\CANFDlink\inc\port\canfdlink_port.h</FilePath>
             </File>
           </Files>
         </Group>
