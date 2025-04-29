@@ -1,4 +1,4 @@
-/*
+/* 
     基于Modbus寄存器数据映射表实现Modbus读写寄存器基本功能，
     适用于 Modbus RTU / Modbus CANFD / Modbus TCP
 */
@@ -49,11 +49,11 @@ RegRead_TypeDef read_modbus_reg(uint16_t reg_addr, uint16_t* p_read)
             {
                 if (reg_addr == MODBUS_REGISTERS[i].start_addr) /* 起始地址 */
                 {
-                    value = (*(uint32_t*)MODBUS_REGISTERS[i].p_data) >> 16;  // 低地址存放高16位
+                    value = (*(uint32_t*)MODBUS_REGISTERS[i].p_data) >> 16;  // 读数据高16位
                 }
                 else /* 起始地址 + 1 */
                 {
-                    value = (*(uint32_t*)MODBUS_REGISTERS[i].p_data) & 0xffff;  // 高地址存放低16位
+                    value = (*(uint32_t*)MODBUS_REGISTERS[i].p_data) & 0xffff;  // 读数据低16位
                 }
                 RegRead_state = RegRead_SUCCESS;
                 break;

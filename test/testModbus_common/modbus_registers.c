@@ -2,29 +2,19 @@
     Modbus寄存器数据映射
 */
 #include "modbus_registers.h"
-#include "data.h"
 
-nodeMsg_TypeDef nodeMsg = {
-    .id = 0x01,
-    .heartbeat_time = 0x3E8
-};
+int32_t sensor_data[6] = {0x12345678};
+uint8_t led_control = 0xAB;
 
-int32_t sensor_data[6] = {0};
-uint8_t led_control = 0;
-
-/* 用户自定义通信对象映射表 - 0表示无对象 */
+/* 用户通信对象映射表 - 0表示无对象 */
 static uint16_t sub_index[SUB_INDEX_LEN] = {
-    0x2000, 0x2001, 0x2002, 0x2003, 0x2004, 0x2005,     /* 1~6 */  
-    0x2006, 0x2007, 0x2008, 0x2009, 0x200A, 0x200B,     /* 7~12 */
+    0x2000, 0x2001, 0x2002, 0x2003, 0x2004, 0x2005, 
+    0x2006, 0x2007, 0x2008, 0x2009, 0x200A, 0x200B,
 };
 
 /* Modbus寄存器数据映射表 - 0地址不可使用 */
 const ModbusReg_TypeDef MODBUS_REGISTERS[] = {
-    /* 通用通讯对象区 */
-    {0x0001, USE_ONE_REG_8BIT, READ_WRITE, &nodeMsg.id},
-    {0x0002, USE_ONE_REG_16BIT, READ_WRITE, &nodeMsg.heartbeat_time},
-
-	/* 用户自定义通信对象映射区 - 该部分一共有 SUB_INDEX_LEN 个寄存器，用户不需要修改 */
+	/* 通信对象映射区 - 该部分一共有 SUB_INDEX_LEN 个寄存器，用户不需要修改 */
 	{0x1000, USE_ONE_REG_16BIT, READ_WRITE, &sub_index[0]},
     {0x1001, USE_ONE_REG_16BIT, READ_WRITE, &sub_index[1]},
     {0x1002, USE_ONE_REG_16BIT, READ_WRITE, &sub_index[2]},
@@ -57,8 +47,8 @@ const ModbusReg_TypeDef MODBUS_REGISTERS[] = {
     {0x101D, USE_ONE_REG_16BIT, READ_WRITE, &sub_index[29]},
     {0x101E, USE_ONE_REG_16BIT, READ_WRITE, &sub_index[30]},
 
-	/* 用户自定义通信对象区 */
-    {0x2000, USE_TWO_REG_32BIT, ONLY_READ, &sensor_data[0]},
+	/* 用户通信对象区 */
+    {0x2000, USE_TWO_REG_32BIT, READ_WRITE, &sensor_data[0]},
     {0x2002, USE_TWO_REG_32BIT, ONLY_READ, &sensor_data[1]},
     {0x2004, USE_TWO_REG_32BIT, ONLY_READ, &sensor_data[2]},
     {0x2006, USE_TWO_REG_32BIT, ONLY_READ, &sensor_data[3]},
@@ -70,6 +60,4 @@ const ModbusReg_TypeDef MODBUS_REGISTERS[] = {
 
 /* modbus寄存器（数据）个数 */
 const uint16_t MODBUS_DATA_NUM = sizeof(MODBUS_REGISTERS) / sizeof(ModbusReg_TypeDef);
-
-
 

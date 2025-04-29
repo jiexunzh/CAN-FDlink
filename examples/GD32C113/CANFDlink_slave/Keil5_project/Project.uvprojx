@@ -573,11 +573,6 @@
               <FilePath>..\App\main.c</FilePath>
             </File>
             <File>
-              <FileName>slave.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\App\slave.c</FilePath>
-            </File>
-            <File>
               <FileName>CANFDlinkConfig.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\App\CANFDlinkConfig.h</FilePath>
