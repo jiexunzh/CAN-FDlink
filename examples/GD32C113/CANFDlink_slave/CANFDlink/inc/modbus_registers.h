@@ -7,7 +7,7 @@ typedef enum
 {
     USE_ONE_REG_8BIT = 0, /* 使用1个Modbus寄存器（8位数据） */
     USE_ONE_REG_16BIT,    /* 使用1个Modbus寄存器（16位数据） */
-    USE_TWO_REG,          /* 使用2个Modbus寄存器（32位数据） */
+    USE_TWO_REG_32BIT,    /* 使用2个Modbus寄存器（32位数据） */
 } RegNum_TypeDef;
 
 typedef enum
@@ -23,6 +23,8 @@ typedef struct
     RegAccess_TypeDef access_type; /* 数据读写属性 */
     void* p_data;                  /* 数据指针 */
 } ModbusReg_TypeDef;
+
+#define SUB_INDEX_LEN 31
 
 extern const ModbusReg_TypeDef MODBUS_REGISTERS[];
 extern const uint16_t MODBUS_DATA_NUM;

@@ -10,11 +10,11 @@ static void write_low_16bits(uint32_t* p_reg32, uint16_t reg16);
 
 /**
  * @brief  read_modbus_reg
- * @param  reg_addr 寄存器地址
- * @param  reg_buf 寄存器缓冲
- * @retval 读取成功 / 地址异常
+ * @param  reg_addr 读取的寄存器地址
+ * @param  p_read 存放寄存器读取值变量的指针
+ * @retval 读取成功 / 读取地址异常
  */
-RegRead_TypeDef read_modbus_reg(uint16_t reg_addr, uint8_t* reg_buf)
+RegRead_TypeDef read_modbus_reg(uint16_t reg_addr, uint16_t* p_read)
 {
     uint16_t value = 0;
     RegRead_TypeDef RegRead_state = RegRead_ADDR_ERROR;
@@ -23,7 +23,7 @@ RegRead_TypeDef read_modbus_reg(uint16_t reg_addr, uint8_t* reg_buf)
     /* 遍历Modbus寄存器数据映射表 */
     for (i = 0; i < MODBUS_DATA_NUM; i++)
     {
-        /* 数据使用1个Modbus寄存器 */
+        /* 数据使用1个Modbus寄存器（8位或16位数据） */
         if (MODBUS_REGISTERS[i].reg_num == USE_ONE_REG_8BIT || MODBUS_REGISTERS[i].reg_num == USE_ONE_REG_16BIT)
         {
             /* reg_addr == 起始地址 */
@@ -42,7 +42,7 @@ RegRead_TypeDef read_modbus_reg(uint16_t reg_addr, uint8_t* reg_buf)
             }
         }
         /* 数据使用2个Modbus寄存器（32位数据） */
-        else if (MODBUS_REGISTERS[i].reg_num == USE_TWO_REG)
+        else if (MODBUS_REGISTERS[i].reg_num == USE_TWO_REG_32BIT)
         {
             /* reg_addr == 起始地址 || 起始地址 + 1 */
             if (reg_addr == MODBUS_REGISTERS[i].start_addr || reg_addr == MODBUS_REGISTERS[i].start_addr + 1)
@@ -63,9 +63,7 @@ RegRead_TypeDef read_modbus_reg(uint16_t reg_addr, uint8_t* reg_buf)
 
     if (RegRead_state == RegRead_SUCCESS)
     {
-        /* 高位在前 */
-        reg_buf[0] = value >> 8;
-        reg_buf[1] = value;
+        *p_read = value;
     }
 
     return RegRead_state; /* 读取成功，返回0；地址异常，返回1 */
@@ -84,7 +82,7 @@ RegWrite_TypeDef write_modbus_reg(uint16_t reg_addr, uint16_t reg_value)
     /* 遍历Modbus寄存器数据映射表 */
     for (i = 0; i < MODBUS_DATA_NUM; i++)
     {
-        /* 数据使用1个Modbus寄存器 */
+        /* 数据使用1个Modbus寄存器（8位或16位数据） */
         if (MODBUS_REGISTERS[i].reg_num == USE_ONE_REG_8BIT || MODBUS_REGISTERS[i].reg_num == USE_ONE_REG_16BIT)
         {
             if (reg_addr == MODBUS_REGISTERS[i].start_addr)
@@ -105,7 +103,7 @@ RegWrite_TypeDef write_modbus_reg(uint16_t reg_addr, uint16_t reg_value)
             }
         }
         /* 数据使用2个Modbus寄存器（32位数据） */
-        else if (MODBUS_REGISTERS[i].reg_num == USE_TWO_REG)
+        else if (MODBUS_REGISTERS[i].reg_num == USE_TWO_REG_32BIT)
         {
             /* 判断寄存器地址 */
             if (reg_addr == MODBUS_REGISTERS[i].start_addr || reg_addr == MODBUS_REGISTERS[i].start_addr + 1)

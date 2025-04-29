@@ -16,7 +16,7 @@ typedef enum
     RegWrite_ACCESS_ERROR, /* 寄存器不可写入 */
 } RegWrite_TypeDef;
 
-RegRead_TypeDef read_modbus_reg(uint16_t reg_addr, uint8_t* reg_buf);
+RegRead_TypeDef read_modbus_reg(uint16_t reg_addr, uint16_t* p_read);
 RegWrite_TypeDef write_modbus_reg(uint16_t reg_addr, uint16_t reg_value);
 
 #endif /* MODBUS_COMMON_H */

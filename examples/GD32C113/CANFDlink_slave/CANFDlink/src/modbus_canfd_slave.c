@@ -6,6 +6,7 @@
 static void analysis_enquiry_frame_efid(uint32_t efid, ModbusCanfd_efidMsg* efid_msg);
 static void modbus_canfd_03H(uint8_t* pdu);
 
+#if 0
 /**
  * @brief  处理modbus canfd问询帧
  * @param
@@ -84,3 +85,5 @@ static void analysis_enquiry_frame_efid(uint32_t efid, ModbusCanfd_efidMsg* efid
 static void modbus_canfd_03H(uint8_t* pdu)
 {
 }
+
+#endif
